@@ -81,10 +81,10 @@ const Sidebar = ({
       <Modal
         isOpen={userSelectionModalOpen}
         onClose={() => setUserSelectionModalOpen(false)}
+        title="Select User"
+        scrollable={true}
       >
         <div className="flex flex-col gap-4">
-          <h2 className="text-lg font-bold">Select User</h2>
-          <hr />
           {users && users.length > 0 && (
             <ul className="flex flex-col gap-2">
               {users.map((u: any) => (

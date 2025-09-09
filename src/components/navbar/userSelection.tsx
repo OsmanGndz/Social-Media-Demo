@@ -9,24 +9,38 @@ import type { RootState } from "../../store/store";
 interface User {
   id: string;
   name: string;
+  userName: string;
+  email: string;
 }
 
 const UserSelection = () => {
   const [userSelectionOpen, setUserSelectionOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [user, setUser] = useState<User>({ id: "", name: "Select User" });
   const dispatch = useDispatch();
   const { users, selectedUser } = useSelector((state: RootState) => state.user);
 
   const fetchUsers = async () => {
+    if (
+      localStorage.getItem("users") &&
+      JSON.parse(localStorage.getItem("users") || "[]").length > 0
+    ) {
+      const usersFromStorage = JSON.parse(
+        localStorage.getItem("users") || "[]"
+      );
+      dispatch(setUsers(usersFromStorage));
+      return;
+    }
     try {
       const response = await api.get("/users");
       console.log(response.data);
       const users = response.data.map((us: any) => ({
         id: us.id,
         name: us.name,
+        userName: us.username,
+        email: us.email,
       }));
-      dispatch(setUsers(users)); // Kullanıcıları Redux durumuna ekle
+      dispatch(setUsers(users));
+      localStorage.setItem("users", JSON.stringify(users));
     } catch (error) {
       console.error("Error fetching users:", error);
     } finally {
@@ -69,7 +83,7 @@ const UserSelection = () => {
         className="flex flex-row items-center gap-2 cursor-pointer"
       >
         <FaUserCircle size={32} />
-        <p className="font-semibold">{selectedUser.name}</p>
+        <p className="font-semibold">{selectedUser.name ? selectedUser.name : "Select user"}</p>
         {userSelectionOpen ? (
           <IoMdArrowDropup size={20} />
         ) : (
@@ -86,7 +100,14 @@ const UserSelection = () => {
                   className={`p-2 hover:bg-gray-200 hover:text-black cursor-pointer rounded-md ${
                     u.id === selectedUser.id ? "bg-blue-500 text-white" : ""
                   }`}
-                  onClick={() => handleUserSelect({ id: u.id, name: u.name })}
+                  onClick={() =>
+                    handleUserSelect({
+                      id: u.id,
+                      name: u.name,
+                      userName: u.userName,
+                      email: u.email,
+                    })
+                  }
                 >
                   {u.name}
                 </li>
