@@ -40,6 +40,7 @@ const UserSelection = () => {
       }));
       dispatch(setUsers(users));
       localStorage.setItem("users", JSON.stringify(users));
+      dispatch(setSelectedUser(users[0].id))
     } catch (error) {
       console.error("Error fetching users:", error);
     } finally {
