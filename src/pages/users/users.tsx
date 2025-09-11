@@ -17,7 +17,7 @@ const Users = () => {
   const [newUser, setNewUser] = useState({
     id: "",
     name: "",
-    userName: "",
+    username: "",
     email: "",
   });
   const [openUpdateUserModal, setOpenUpdateUserModal] = useState(false);
@@ -25,22 +25,22 @@ const Users = () => {
   const [updateUserData, setUpdateUserData] = useState({
     id: "",
     name: "",
-    userName: "",
+    username: "",
     email: "",
   });
 
   const handleAddNewUser = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newUser.id && newUser.name && newUser.userName && newUser.email) {
+    if (newUser.id && newUser.name && newUser.username && newUser.email) {
       dispatch(
         addNewUser({
           id: newUser.id,
           name: newUser.name,
-          userName: newUser.userName,
+          username: newUser.username,
           email: newUser.email,
         })
       );
-      setNewUser({ id: "", name: "", userName: "", email: "" });
+      setNewUser({ id: "", name: "", username: "", email: "" });
       setOpenAddUserModal(false);
     }
   };
@@ -56,7 +56,7 @@ const Users = () => {
     setUpdateUserData({
       id: userId,
       name: user?.name || "",
-      userName: user?.userName || "",
+      username: user?.username || "",
       email: user?.email || "",
     });
   };
@@ -66,11 +66,11 @@ const Users = () => {
     if (
       updateUserData.id &&
       updateUserData.name &&
-      updateUserData.userName &&
+      updateUserData.username &&
       updateUserData.email
     ) {
       dispatch(updateUser(updateUserData));
-      setUpdateUserData({ id: "", name: "", userName: "", email: "" });
+      setUpdateUserData({ id: "", name: "", username: "", email: "" });
       setOpenUpdateUserModal(false);
     }
   };
@@ -126,7 +126,7 @@ const Users = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-gray-600">
                   <FaUser className="w-4 h-4" />
-                  <span>{user.userName}</span>
+                  <span>{user.username}</span>
                 </div>
 
                 <div className="flex items-center gap-2 text-gray-600">
@@ -171,7 +171,7 @@ const Users = () => {
             <input
               type="text"
               onChange={(e) =>
-                setNewUser({ ...newUser, userName: e.target.value })
+                setNewUser({ ...newUser, username: e.target.value })
               }
               placeholder="username"
               className="border border-gray-500 rounded-md py-2 px-4"
@@ -232,10 +232,10 @@ const Users = () => {
               onChange={(e) =>
                 setUpdateUserData({
                   ...updateUserData,
-                  userName: e.target.value,
+                  username: e.target.value,
                 })
               }
-              value={updateUserData.userName}
+              value={updateUserData.username}
               placeholder="username"
               className="border border-gray-500 rounded-md py-2 px-4"
             />

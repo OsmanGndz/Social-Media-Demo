@@ -8,6 +8,13 @@ import { setSelectedUser } from "../../store/features/userSlice";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 
+interface User {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+}
+
 const Sidebar = ({
   sidebarOpen,
   setSidebarOpen,
@@ -86,7 +93,7 @@ const Sidebar = ({
               </Link>
             </li>
           </ul>
-          <div className="flex flex-col gap-4 h-fit mt-8 px-8 w-full" >
+          <div className="flex flex-col gap-4 h-fit mt-8 px-8 w-full">
             <h2 className="font-bold text-xl text-center">User Information</h2>
             <ul className="flex flex-col gap-4">
               <li className="flex flex-row gap-2">
@@ -99,7 +106,7 @@ const Sidebar = ({
               </li>
               <li className="flex flex-row gap-2">
                 <p className="font-semibold">Username:</p>
-                <p>{selectedUser.userName}</p>
+                <p>{selectedUser.username}</p>
               </li>
               <li className="flex flex-row gap-2">
                 <p className="font-semibold">Email:</p>
@@ -118,7 +125,7 @@ const Sidebar = ({
         <div className="flex flex-col gap-4">
           {users && users.length > 0 && (
             <ul className="flex flex-col gap-2">
-              {users.map((u: any) => (
+              {users.map((u: User) => (
                 <li
                   key={u.id}
                   onClick={() => {

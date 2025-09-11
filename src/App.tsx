@@ -7,6 +7,13 @@ import { api } from "./lib/axios";
 import { FaUserCircle } from "react-icons/fa";
 import { setUserPosts } from "./store/features/postSlice";
 
+interface Post {
+  id: string;
+  userId: string;
+  title: string;
+  body: string;
+}
+
 function App() {
   const { selectedUser } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
@@ -63,7 +70,7 @@ function App() {
     <div className="flex flex-col md:flex-row w-full gap-4 xl:gap-16">
       <section className="md:3/5 xl:w-3/4">
         <ul className="flex flex-col gap-8 w-full">
-          {userPosts.map((post: any) => (
+          {userPosts.map((post: Post) => (
             <li
               key={post.id}
               className="border border-gray-100 p-8 shadow-md rounded-md bg-white flex flex-col gap-4 w-full"
@@ -96,7 +103,7 @@ function App() {
           </li>
           <li className="flex flex-row gap-2">
             <p className="font-semibold">Username:</p>
-            <p>{selectedUser.userName}</p>
+            <p>{selectedUser.username}</p>
           </li>
           <li className="flex flex-row gap-2">
             <p className="font-semibold">Email:</p>

@@ -1,69 +1,183 @@
-# React + TypeScript + Vite
+# 📱 Social Media Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern bir sosyal medya demo uygulaması. Bu proje, kullanıcı yönetimi ve post gösterimi özelliklerini içeren React tabanlı bir web uygulamasıdır.
 
-Currently, two official plugins are available:
+## ✨ Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 👥 **Kullanıcı Yönetimi**: Kullanıcı ekleme, düzenleme ve silme
+- 📝 **Post Görüntüleme**: Kullanıcıların postlarını görüntüleme
+- 🎨 **Modern UI**: Tailwind CSS ile responsive tasarım
+- 💾 **Local Storage**: Verilerin tarayıcıda saklanması
+- 🔄 **State Management**: Redux Toolkit ile merkezi state yönetimi
+- 🚀 **Hızlı Geliştirme**: Vite ile optimize edilmiş geliştirme ortamı
 
-## Expanding the ESLint configuration
+## 🛠️ Teknolojiler
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend Framework**: React 19.1.1
+- **Type Safety**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Redux Toolkit
+- **Routing**: React Router DOM
+- **HTTP Client**: Axios
+- **Icons**: React Icons
+- **Build Tool**: Vite
+- **Linting**: ESLint
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Kurulum
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. **Projeyi klonlayın:**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+   ```bash
+   git clone <repository-url>
+   cd Social-Media-Demo
+   ```
+
+2. **Bağımlılıkları yükleyin:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Geliştirme sunucusunu başlatın:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Tarayıcınızda açın:**
+   ```
+   http://localhost:5173
+   ```
+
+## 📁 Proje Yapısı
+
+```
+src/
+├── components/          # Yeniden kullanılabilir bileşenler
+│   ├── modal/          # Modal bileşeni
+│   ├── navbar/         # Navigasyon çubuğu
+│   └── sidebar/        # Yan menü
+├── layouts/            # Sayfa düzenleri
+├── lib/                # Kütüphaneler ve konfigürasyonlar
+├── pages/              # Sayfa bileşenleri
+│   ├── posts/          # Post sayfası
+│   └── users/          # Kullanıcı sayfası
+├── store/              # Redux store yapılandırması
+│   └── features/       # Redux slice'ları
+├── App.tsx             # Ana uygulama bileşeni
+└── main.tsx            # Uygulama giriş noktası
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🎯 Kullanım
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Kullanıcı Yönetimi
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- `/users` sayfasında kullanıcıları görüntüleyebilirsiniz
+- "Add New User" butonu ile yeni kullanıcı ekleyebilirsiniz
+- Mevcut kullanıcıları düzenleyebilir veya silebilirsiniz
+
+### Post Görüntüleme
+
+- Ana sayfada seçili kullanıcının postlarını görüntüleyebilirsiniz
+- Sağ tarafta kullanıcı bilgileri görünür
+- Postlar JSONPlaceholder API'sinden çekilir
+
+### Navigasyon
+
+- Sol üst köşedeki menü butonu ile sidebar'ı açabilirsiniz
+- Sidebar'dan farklı sayfalara geçiş yapabilirsiniz
+
+## 🔧 Geliştirme Komutları
+
+```bash
+# Geliştirme sunucusunu başlat
+npm run dev
+
+# Production build oluştur
+npm run build
+
+# Build'i önizle
+npm run preview
+
+# Linting kontrolü
+npm run lint
 ```
+
+## 📊 State Yönetimi
+
+Uygulama Redux Toolkit kullanarak state yönetimi yapar:
+
+- **userSlice**: Kullanıcı verilerini ve seçili kullanıcıyı yönetir
+- **postSlice**: Post verilerini yönetir
+
+### Store Yapısı
+
+```typescript
+{
+  user: {
+    users: User[],
+    selectedUser: User
+  },
+  post: {
+    userPosts: Post[]
+  }
+}
+```
+
+## 💾 Veri Saklama
+
+Uygulama verileri tarayıcının localStorage'ında saklar:
+
+- `users`: Kullanıcı listesi
+- `selectedUser`: Seçili kullanıcı
+- `userPosts`: Kullanıcı postları
+
+## 🌐 API Entegrasyonu
+
+Uygulama JSONPlaceholder API'sini kullanır:
+
+- **Users**: `https://jsonplaceholder.typicode.com/users`
+- **Posts**: `https://jsonplaceholder.typicode.com/posts?userId={userId}`
+
+## 🎨 Styling
+
+- **Tailwind CSS** ile utility-first CSS framework
+- **Responsive design** - mobil ve masaüstü uyumlu
+- **Modern UI components** - hover efektleri ve geçişler
+
+## 📱 Responsive Tasarım
+
+- **Mobile First**: Önce mobil tasarım, sonra masaüstü
+- **Breakpoints**: sm, md, lg, xl
+- **Flexible Layout**: Flexbox ve Grid kullanımı
+
+## 🔍 Özellik Detayları
+
+### Kullanıcı Ekleme
+
+- Form validasyonu ile güvenli kullanıcı ekleme
+- Modal popup ile kullanıcı dostu arayüz
+
+### Post Görüntüleme
+
+- Lazy loading ile performans optimizasyonu
+- Cache mekanizması ile API çağrılarını azaltma
+
+### State Persistence
+
+- Sayfa yenilendiğinde verilerin korunması
+- localStorage ile kalıcı veri saklama
+
+## 🚀 Deployment
+
+```bash
+# Production build oluştur
+npm run build
+
+# Build dosyaları dist/ klasöründe oluşur
+# Bu dosyaları herhangi bir static hosting servisine yükleyebilirsiniz
+```
+
+## 👨‍💻 Geliştirici
+
+Bu proje modern web geliştirme teknolojileri kullanılarak geliştirilmiştir.

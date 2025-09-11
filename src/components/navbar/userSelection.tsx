@@ -9,7 +9,7 @@ import type { RootState } from "../../store/store";
 interface User {
   id: string;
   name: string;
-  userName: string;
+  username: string;
   email: string;
 }
 
@@ -32,11 +32,10 @@ const UserSelection = () => {
     }
     try {
       const response = await api.get("/users");
-      console.log(response.data);
-      const users = response.data.map((us: any) => ({
+      const users = response.data.map((us: User) => ({
         id: us.id,
         name: us.name,
-        userName: us.username,
+        username: us.username,
         email: us.email,
       }));
       dispatch(setUsers(users));
@@ -94,7 +93,7 @@ const UserSelection = () => {
         <div className="bg-gray-200 absolute w-[250px] right-0 top-full shadow-md p-4 h-52 overflow-y-scroll z-10 scroll-smooth rounded-md">
           {users && users.length > 0 && (
             <ul>
-              {users.map((u: any) => (
+              {users.map((u: User) => (
                 <li
                   key={u.id}
                   className={`p-2 hover:bg-blue-200 hover:text-black cursor-pointer rounded-md ${
@@ -104,7 +103,7 @@ const UserSelection = () => {
                     handleUserSelect({
                       id: u.id,
                       name: u.name,
-                      userName: u.userName,
+                      username: u.username,
                       email: u.email,
                     })
                   }
