@@ -10,7 +10,7 @@ const Navbar = ({
   setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="h-20 shadow-lg sticky flex flex-row items-center px-16 justify-between">
+    <div className="h-20 shadow-lg sticky flex flex-row items-center px-4 sm:px-16 justify-between">
       <Link to="/" className="font-bold text-xl">
         SOCIAL MEDIA
       </Link>

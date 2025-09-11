@@ -60,8 +60,8 @@ function App() {
   }, [selectedUser]);
 
   return (
-    <div className="flex flex-row w-full gap-16">
-      <section className="w-3/4">
+    <div className="flex flex-col md:flex-row w-full gap-4 xl:gap-16">
+      <section className="md:3/5 xl:w-3/4">
         <ul className="flex flex-col gap-8 w-full">
           {userPosts.map((post: any) => (
             <li
@@ -83,7 +83,7 @@ function App() {
           ))}
         </ul>
       </section>
-      <section className="w-1/4 flex flex-col shadow-md py-4 px-4 rounded-md border border-gray-100 gap-4 h-fit">
+      <section className="hidden md:flex md:2/5 xl:w-1/4  flex-col shadow-md py-4 px-4 rounded-md border border-gray-100 gap-4 h-fit">
         <h2 className="font-bold text-xl text-center">User Information</h2>
         <ul className="flex flex-col gap-4">
           <li className="flex flex-row gap-2">

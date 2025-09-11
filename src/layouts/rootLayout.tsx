@@ -10,7 +10,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       {sidebarOpen && (
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       )}
-      <main className="flex flex-col px-16 py-8">{children}</main>
+      <main className="flex flex-col px-4 sm:px-16 py-8">{children}</main>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import type { RootState } from "../../store/store";
 import Modal from "../modal/modal";
 import { setSelectedUser } from "../../store/features/userSlice";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({
   sidebarOpen,
@@ -28,7 +29,7 @@ const Sidebar = ({
   };
 
   return (
-    <>
+    <div className="w-full">
       {/* Overlay - sadece mobilde ve sidebar açıkken görünür */}
       {sidebarOpen && (
         <div
@@ -45,17 +46,17 @@ const Sidebar = ({
           
         `}
       >
-        <div className="">
+        <div className="w-full">
           <div className="text-xl font-bold mb-6 h-20 shadow-md flex items-center px-8 justify-between">
             <h2 className="">Social Media</h2>
             <button onClick={() => setSidebarOpen(false)}>
               <MdCancel size={24} />
             </button>
           </div>
-          <ul className="space-y-4 px-8">
-            <li key="profile">
+          <ul className="space-y-4 px-8 w-full">
+            <li key="profile" className="w-full">
               <button
-                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors w-full"
                 onClick={() => {
                   setUserSelectionModalOpen(true);
                 }}
@@ -65,17 +66,47 @@ const Sidebar = ({
                 <IoMdArrowDropdown size={20} />
               </button>
             </li>
-            <li key="crud">
-              <button
-                className="flex items-center space-x-3 p-2 rounded-lg bg-blue-500 text-white w-full justify-center"
-                onClick={() => {
-                  setUserSelectionModalOpen(true);
-                }}
+            <li className="w-full">
+              <Link
+                onClick={() => setSidebarOpen(false)}
+                to="/users"
+                className="w-full block bg-blue-500 p-2 text-white rounded-md cursor-pointer hover:scale-104 
+          transition duration-500 text-center"
               >
-                <p>CRUD Operations</p>
-              </button>
+                Users
+              </Link>
+            </li>
+            <li>
+              <Link
+                onClick={() => setSidebarOpen(false)}
+                to="/posts"
+                className="w-full block bg-blue-500 p-2 text-white rounded-md cursor-pointer hover:scale-104 transition duration-500 text-center"
+              >
+                Posts
+              </Link>
             </li>
           </ul>
+          <div className="flex flex-col gap-4 h-fit mt-8 px-8 w-full" >
+            <h2 className="font-bold text-xl text-center">User Information</h2>
+            <ul className="flex flex-col gap-4">
+              <li className="flex flex-row gap-2">
+                <p className="font-semibold">ID:</p>
+                <p>{selectedUser.id}</p>
+              </li>
+              <li className="flex flex-row gap-2">
+                <p className="font-semibold">Name:</p>
+                <p>{selectedUser.name}</p>
+              </li>
+              <li className="flex flex-row gap-2">
+                <p className="font-semibold">Username:</p>
+                <p>{selectedUser.userName}</p>
+              </li>
+              <li className="flex flex-row gap-2">
+                <p className="font-semibold">Email:</p>
+                <p className="truncate max-w-[200px]">{selectedUser.email}</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <Modal
@@ -90,7 +121,10 @@ const Sidebar = ({
               {users.map((u: any) => (
                 <li
                   key={u.id}
-                  onClick={() => handleUserSelect(u.id)}
+                  onClick={() => {
+                    handleUserSelect(u.id);
+                    setSidebarOpen(false);
+                  }}
                   className={`${
                     u.id === selectedUser.id
                       ? "bg-blue-500 text-white"
@@ -104,7 +138,7 @@ const Sidebar = ({
           )}
         </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

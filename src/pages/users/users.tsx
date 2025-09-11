@@ -76,7 +76,7 @@ const Users = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto py-6">
       <header className="mb-8 flex flex-row justify-between items-center">
         <div>
           <h2 className="text-3xl font-bold text-gray-800">Users</h2>
@@ -94,7 +94,7 @@ const Users = () => {
         {users.map((user) => (
           <li
             key={user.id}
-            className="list-none bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            className="list-none bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <div className="p-4">
               <div className="flex items-center justify-between gap-4 mb-4">
