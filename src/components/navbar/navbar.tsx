@@ -17,7 +17,8 @@ const Navbar = ({
       <div className="hidden md:flex flex-row items-center gap-4">
         <Link
           to="/users"
-          className="w-full bg-blue-500 p-2 text-white rounded-md cursor-pointer hover:scale-104 transition duration-500 text-center"
+          className="w-full bg-blue-500 p-2 text-white rounded-md cursor-pointer hover:scale-104 
+          transition duration-500 text-center"
         >
           Users
         </Link>

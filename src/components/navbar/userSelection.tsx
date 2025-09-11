@@ -80,24 +80,24 @@ const UserSelection = () => {
           setUserSelectionOpen(!userSelectionOpen);
           console.log(userSelectionOpen);
         }}
-        className="flex flex-row items-center gap-2 cursor-pointer"
+        className="flex flex-row items-center gap-2 cursor-pointer w-full min-w-60 justify-end"
       >
-        <FaUserCircle size={32} />
+        <FaUserCircle size={36} />
         <p className="font-semibold">{selectedUser.name ? selectedUser.name : "Select user"}</p>
         {userSelectionOpen ? (
-          <IoMdArrowDropup size={20} />
+          <IoMdArrowDropup size={24} />
         ) : (
-          <IoMdArrowDropdown size={20} />
+          <IoMdArrowDropdown size={24} />
         )}
       </button>
       {userSelectionOpen && (
-        <div className="bg-gray-100 absolute w-[250px] right-0 top-full shadow-md p-4 h-40 overflow-y-scroll z-10 scroll-smooth rounded-md">
+        <div className="bg-gray-200 absolute w-[250px] right-0 top-full shadow-md p-4 h-52 overflow-y-scroll z-10 scroll-smooth rounded-md">
           {users && users.length > 0 && (
             <ul>
               {users.map((u: any) => (
                 <li
                   key={u.id}
-                  className={`p-2 hover:bg-gray-200 hover:text-black cursor-pointer rounded-md ${
+                  className={`p-2 hover:bg-blue-200 hover:text-black cursor-pointer rounded-md ${
                     u.id === selectedUser.id ? "bg-blue-500 text-white" : ""
                   }`}
                   onClick={() =>

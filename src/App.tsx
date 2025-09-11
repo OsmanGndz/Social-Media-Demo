@@ -29,7 +29,7 @@ function App() {
       const response = await api.get(
         `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
       );
-      setUserPosts(response.data);
+      dispatch(setUserPosts(response.data));
       localStorage.setItem("userPosts", JSON.stringify(response.data));
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -55,11 +55,15 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    fetchPosts(selectedUser.id);
+  }, [selectedUser]);
+
   return (
     <div className="flex flex-row w-full gap-16">
       <section className="w-3/4">
         <ul className="flex flex-col gap-8 w-full">
-          {userPosts.map((post) => (
+          {userPosts.map((post: any) => (
             <li
               key={post.id}
               className="border border-gray-100 p-8 shadow-md rounded-md bg-white flex flex-col gap-4 w-full"
