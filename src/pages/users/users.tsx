@@ -76,7 +76,7 @@ const Users = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-6">
+    <div>
       <header className="mb-8 flex flex-row justify-between items-center">
         <div>
           <h2 className="text-3xl font-bold text-gray-800">Users</h2>
